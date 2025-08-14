@@ -1,0 +1,213 @@
+<mxfile host="app.diagrams.net" modified="2025-08-14T00:00:00.000Z" agent="5.0" version="24.6.4" etag="draw.io-desktop" type="device">
+  <diagram name="Use Case Diagram - Sistem Manajemen Toko Buku" id="use-case-bookstore">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="Use Case Diagram - Sistem Manajemen Toko Buku Online" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="30" width="470" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- System Boundary -->
+        <mxCell id="system-boundary" value="Sistem Manajemen Toko Buku Online" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="300" y="80" width="570" height="480" as="geometry" />
+        </mxCell>
+        
+        <!-- Actors -->
+        <!-- Guest -->
+        <mxCell id="guest-actor" value="Guest" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="80" y="200" width="40" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- User -->
+        <mxCell id="user-actor" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="80" y="320" width="40" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Admin -->
+        <mxCell id="admin-actor" value="Admin" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="80" y="440" width="40" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Use Cases -->
+        <!-- UC-001: Login -->
+        <mxCell id="uc-login" value="UC-001&#10;Login" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="350" y="130" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- UC-002: View Books -->
+        <mxCell id="uc-view-books" value="UC-002&#10;Lihat Daftar Buku" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="520" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- UC-003: Add Book (Admin Only) -->
+        <mxCell id="uc-add-book" value="UC-003&#10;Tambah Buku&#10;(Admin Only)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="350" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- UC-004: Edit Book (Admin Only) -->
+        <mxCell id="uc-edit-book" value="UC-004&#10;Ubah Data Buku&#10;(Admin Only)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="520" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- UC-005: Delete Book (Admin Only) -->
+        <mxCell id="uc-delete-book" value="UC-005&#10;Hapus Buku&#10;(Admin Only)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="690" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- UC-006: Logout -->
+        <mxCell id="uc-logout" value="UC-006&#10;Logout" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="520" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- UC-007: Search Books -->
+        <mxCell id="uc-search-books" value="UC-007&#10;Cari Buku" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="690" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- UC-008: View Book Details -->
+        <mxCell id="uc-book-details" value="UC-008&#10;Lihat Detail Buku" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="350" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Associations -->
+        <!-- Guest associations -->
+        <mxCell id="guest-view-books" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="guest-actor" target="uc-view-books">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="guest-search-books" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="guest-actor" target="uc-search-books">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="guest-book-details" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="guest-actor" target="uc-book-details">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- User associations -->
+        <mxCell id="user-login" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="user-actor" target="uc-login">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="user-view-books" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="user-actor" target="uc-view-books">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="user-logout" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="user-actor" target="uc-logout">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="user-search-books" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="user-actor" target="uc-search-books">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="user-book-details" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="user-actor" target="uc-book-details">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Admin associations -->
+        <mxCell id="admin-login" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="admin-actor" target="uc-login">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="admin-view-books" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="admin-actor" target="uc-view-books">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="admin-add-book" style="endArrow=none;html=1;rounded=0;strokeColor=#d79b00;strokeWidth=2;" edge="1" parent="1" source="admin-actor" target="uc-add-book">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="admin-edit-book" style="endArrow=none;html=1;rounded=0;strokeColor=#d79b00;strokeWidth=2;" edge="1" parent="1" source="admin-actor" target="uc-edit-book">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="admin-delete-book" style="endArrow=none;html=1;rounded=0;strokeColor=#d79b00;strokeWidth=2;" edge="1" parent="1" source="admin-actor" target="uc-delete-book">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="admin-logout" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="admin-actor" target="uc-logout">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="admin-search-books" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="admin-actor" target="uc-search-books">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="admin-book-details" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="admin-actor" target="uc-book-details">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Generalization: Admin extends User -->
+        <mxCell id="admin-extends-user" style="endArrow=block;endFill=0;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1" source="admin-actor" target="user-actor">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="50" y="480" as="sourcePoint" />
+            <mxPoint x="50" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Legend -->
+        <mxCell id="legend-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="950" y="100" width="200" height="300" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-title" value="LEGEND" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="110" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Legend Actors -->
+        <mxCell id="legend-guest" value="Guest" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="970" y="140" width="20" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-guest-text" value="Pengunjung (tidak login)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="150" width="140" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-user" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="970" y="190" width="20" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-user-text" value="User terdaftar (login)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="200" width="140" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-admin" value="Admin" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="970" y="240" width="20" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-admin-text" value="Administrator (CRUD)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="250" width="140" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Legend Use Cases -->
+        <mxCell id="legend-public-uc" value="Public" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="970" y="290" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-public-text" value="Semua user" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="295" width="100" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-admin-uc" value="Admin" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="970" y="330" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-admin-uc-text" value="Admin only" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="335" width="100" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Notes -->
+        <mxCell id="notes-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="590" width="570" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="notes-title" value="CATATAN IMPLEMENTASI" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="600" width="130" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="notes-content" value="• Admin-Only Operations (UC-003, UC-004, UC-005) dilindungi dengan JWT authentication &amp; authorization middleware&#10;• Setiap CRUD operation memerlukan role 'admin' untuk akses&#10;• Guest dapat melihat katalog buku tanpa autentikasi&#10;• User terdaftar memiliki akses yang sama dengan Guest plus Login/Logout&#10;• Admin extends User, sehingga memiliki semua akses User plus CRUD operations&#10;• Implementasi menggunakan Node.js/Express dengan Sequelize ORM dan SQLite database" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="320" y="630" width="530" height="70" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

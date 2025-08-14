@@ -1,0 +1,80 @@
+@startuml
+!theme plain
+title Use Case Diagram - Sistem Manajemen Toko Buku Online\n(SUB-CPMK-8)
+
+' Actors
+:Guest: as G
+:User: as U  
+:Admin: as A
+
+' Use Cases
+(Login) as UC1
+(Lihat Daftar Buku) as UC2
+(Tambah Buku\n**Admin Only**) as UC3
+(Ubah Data Buku\n**Admin Only**) as UC4
+(Hapus Buku\n**Admin Only**) as UC5
+(Logout) as UC6
+(Cari Buku) as UC7
+(Lihat Detail Buku) as UC8
+
+' System boundary
+rectangle "Sistem Manajemen Toko Buku Online" {
+  UC1
+  UC2
+  UC3
+  UC4
+  UC5
+  UC6
+  UC7
+  UC8
+}
+
+' Guest associations
+G --> UC2
+G --> UC7
+G --> UC8
+
+' User associations  
+U --> UC1
+U --> UC2
+U --> UC6
+U --> UC7
+U --> UC8
+
+' Admin associations (includes all User functions plus admin-only)
+A --> UC1
+A --> UC2
+A --> UC3
+A --> UC4
+A --> UC5
+A --> UC6
+A --> UC7
+A --> UC8
+
+' Generalization: Admin extends User
+A --|> U
+
+' Color coding for admin-only use cases
+UC3 #Orange
+UC4 #Orange  
+UC5 #Orange
+
+' Notes
+note top of UC3 : **ADMIN ONLY**\nMemerlukan JWT token\ndan role 'admin'
+note top of UC4 : **ADMIN ONLY**\nMemerlukan JWT token\ndan role 'admin'  
+note top of UC5 : **ADMIN ONLY**\nMemerlukan JWT token\ndan role 'admin'
+
+note bottom of UC2 : **PUBLIC ACCESS**\nDapat diakses tanpa login
+
+note right of A : Administrator memiliki\nakses penuh untuk\nCRUD operations
+
+note as N1
+**IMPLEMENTASI TEKNIS:**
+• UC-003, UC-004, UC-005 dilindungi middleware auth
+• Menggunakan JWT untuk authentication  
+• Role-based authorization untuk admin-only ops
+• Database: SQLite dengan Sequelize ORM
+• Backend: Node.js/Express API
+end note
+
+@enduml
