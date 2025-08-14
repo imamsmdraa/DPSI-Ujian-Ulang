@@ -31,30 +31,31 @@
 
 ---
 
-### Use Case 2: Melihat Daftar Buku (Hanya Admin)
+### Use Case 2: Melihat Daftar Buku (Semua User)
 **ID**: UC-002  
 **Nama**: Melihat Daftar Buku  
-**Aktor**: Admin  
-**Deskripsi**: Admin dapat melihat semua buku yang tersedia dalam sistem  
+**Aktor**: Guest, User, Admin  
+**Deskripsi**: Semua pengguna dapat melihat daftar buku yang tersedia dalam sistem  
 
 **Precondition**: 
-- Admin telah login ke sistem
-- Admin memiliki hak akses admin
+- Sistem dalam keadaan aktif
+- Koneksi database tersedia
 
 **Main Flow**:
-1. Admin memilih menu "Daftar Buku"
-2. Sistem menampilkan daftar semua buku
-3. Sistem menampilkan informasi: ID, Judul, Penulis, Kategori, Harga, Stok, Status
-4. Admin dapat melakukan pencarian atau filter buku
-5. Admin dapat melihat detail lengkap buku
+1. Pengguna mengakses halaman daftar buku
+2. Sistem menampilkan daftar semua buku yang tersedia
+3. Sistem menampilkan informasi: Judul, Penulis, Kategori, Harga, Status Ketersediaan
+4. Pengguna dapat melakukan pencarian atau filter buku
+5. Pengguna dapat melihat detail buku
+6. (Opsional) Admin dapat melihat informasi tambahan seperti stok dan kontrol manajemen
 
 **Alternative Flow**:
 - 2a. Tidak ada buku dalam sistem:
   - 2a.1. Sistem menampilkan pesan "Tidak ada buku tersedia"
-  - 2a.2. Sistem menyediakan opsi untuk menambah buku baru
+  - 2a.2. (Admin only) Sistem menyediakan opsi untuk menambah buku baru
 
 **Postcondition**: 
-- Admin dapat melihat informasi lengkap semua buku dalam sistem
+- Pengguna dapat melihat informasi buku yang tersedia
 
 ---
 
@@ -128,7 +129,44 @@
 
 ---
 
-### Use Case 5: Logout
+### Use Case 5: Menambah Buku Baru (Hanya Admin)
+**ID**: UC-005  
+**Nama**: Menambah Buku Baru  
+**Aktor**: Admin  
+**Deskripsi**: Admin dapat menambahkan buku baru ke dalam sistem  
+
+**Precondition**: 
+- Admin telah login ke sistem
+- Admin memiliki hak akses admin
+
+**Main Flow**:
+1. Admin memilih opsi "Tambah Buku Baru"
+2. Sistem menampilkan form input buku baru
+3. Admin mengisi informasi buku (Judul, Penulis, Kategori, Harga, Stok, Deskripsi, ISBN)
+4. Admin menyimpan data buku baru
+5. Sistem memvalidasi data input
+6. Sistem menyimpan buku baru ke database
+7. Sistem menampilkan pesan konfirmasi berhasil
+8. Sistem menampilkan buku baru dalam daftar buku
+
+**Alternative Flow**:
+- 5a. Data input tidak valid:
+  - 5a.1. Sistem menampilkan pesan error validasi
+  - 5a.2. Kembali ke step 3
+- 5b. ISBN sudah ada dalam sistem:
+  - 5b.1. Sistem menampilkan pesan "ISBN sudah terdaftar"
+  - 5b.2. Kembali ke step 3
+- 6a. Gagal menyimpan ke database:
+  - 6a.1. Sistem menampilkan pesan error
+  - 6a.2. Data tidak tersimpan
+
+**Postcondition**: 
+- Buku baru berhasil ditambahkan ke sistem
+- Buku baru muncul dalam daftar buku
+
+---
+
+### Use Case 6: Logout
 **ID**: UC-005  
 **Nama**: Logout  
 **Aktor**: User, Admin  

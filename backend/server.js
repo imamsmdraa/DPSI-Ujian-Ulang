@@ -171,14 +171,14 @@ const startServer = async () => {
     }
 
     // Start server
-    app.listen(PORT, () => {
-      console.log(`🚀 Server is running on port ${PORT}`);
-      console.log(`📖 API Documentation: http://localhost:${PORT}`);
-      console.log(`🔍 Health Check: http://localhost:${PORT}/health`);
-      console.log(`📚 Books API: http://localhost:${PORT}${API_PREFIX}/books`);
-      console.log(`✍️  Authors API: http://localhost:${PORT}${API_PREFIX}/authors`);
-      console.log(`📂 Categories API: http://localhost:${PORT}${API_PREFIX}/categories`);
-      console.log(`🔐 Auth API: http://localhost:${PORT}/api/auth`);
+    app.listen(PORT, '127.0.0.1', () => {
+      console.log(`🚀 Server is running on http://127.0.0.1:${PORT}`);
+      console.log(`📖 API Documentation: http://127.0.0.1:${PORT}`);
+      console.log(`🔍 Health Check: http://127.0.0.1:${PORT}/health`);
+      console.log(`📚 Books API: http://127.0.0.1:${PORT}${API_PREFIX}/books`);
+      console.log(`✍️  Authors API: http://127.0.0.1:${PORT}${API_PREFIX}/authors`);
+      console.log(`📂 Categories API: http://127.0.0.1:${PORT}${API_PREFIX}/categories`);
+      console.log(`🔐 Auth API: http://127.0.0.1:${PORT}/api/auth`);
     });
 
   } catch (error) {

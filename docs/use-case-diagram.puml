@@ -8,6 +8,7 @@ subtitle SUB-CPMK-8: Desain Sistem dengan UML
 ' Actors
 actor "User" as User
 actor "Admin" as Admin
+actor "Guest" as Guest
 
 ' System boundary
 rectangle "Sistem Manajemen Toko Buku Online" {
@@ -17,37 +18,42 @@ rectangle "Sistem Manajemen Toko Buku Online" {
     usecase "Melihat Daftar Buku" as UC2
     usecase "Mengubah Data Buku" as UC3
     usecase "Menghapus Buku" as UC4
-    
-    ' Additional supporting use cases for completeness
-    usecase "Logout" as UC5
-    usecase "Validasi Kredensial" as UC6
+    usecase "Menambah Buku Baru" as UC5
+    usecase "Logout" as UC6
+    usecase "Validasi Kredensial" as UC7
 }
 
 ' Relationships between actors and use cases
 
-' User can login and logout
+' Guest dapat melihat daftar buku (read-only)
+Guest --> UC2 : melihat
+
+' User can login, logout, dan melihat buku
 User --> UC1 : melakukan
-User --> UC5 : melakukan
+User --> UC2 : melihat
+User --> UC6 : melakukan
 
 ' Admin inherits from User (Admin is a type of User)
 Admin --|> User
 
-' Admin-specific use cases
-Admin --> UC2 : melakukan
+' Admin-specific use cases (Create, Update, Delete)
 Admin --> UC3 : melakukan  
 Admin --> UC4 : melakukan
+Admin --> UC5 : melakukan
 
 ' Include relationships
-UC1 ..> UC6 : <<include>>
+UC1 ..> UC7 : <<include>>
 
 ' Notes for clarification
 note right of Admin : Admin memiliki hak akses\npenuh untuk mengelola\ndata buku dalam sistem
 
-note right of UC2 : Hanya admin yang dapat\nmelihat daftar lengkap buku\ndengan informasi detail
+note right of UC2 : Semua pengguna dapat melihat\ndaftar buku, tetapi hanya\nadmin yang dapat mengelola
 
-note right of UC3 : Mengubah informasi buku:\n- Judul, Penulis, Kategori\n- Harga, Stok, Deskripsi\n- ISBN, Tanggal Publikasi
+note right of UC3 : Mengubah informasi buku:\n- Judul, Penulis, Kategori\n- Harga, Stok, Deskripsi\n- ISBN, Tanggal Publikasi\n(ADMIN ONLY)
 
-note right of UC4 : Menghapus buku dari sistem\ndengan konfirmasi untuk\nmenghindari penghapusan\nyang tidak disengaja
+note right of UC4 : Menghapus buku dari sistem\ndengan konfirmasi untuk\nmenghindari penghapusan\nyang tidak disengaja\n(ADMIN ONLY)
+
+note right of UC5 : Menambahkan buku baru\nke dalam sistem dengan\ninformasi lengkap\n(ADMIN ONLY)
 
 note bottom of UC1 : Sistem melakukan validasi\nkredensial dan memberikan\nakses sesuai dengan role\npengguna (User/Admin)
 

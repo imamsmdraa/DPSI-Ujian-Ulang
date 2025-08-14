@@ -1,5 +1,6 @@
 const express = require('express');
 const { Book, Author, Category, BookAuthor, sequelize } = require('../models');
+const { authenticateToken, authorizeRoles } = require('../middleware/auth');
 const router = express.Router();
 
 /**
@@ -165,9 +166,9 @@ router.get('/:id', async (req, res) => {
 
 /**
  * POST /api/v1/books
- * Membuat buku baru dengan authors
+ * Membuat buku baru dengan authors (Admin only)
  */
-router.post('/', async (req, res) => {
+router.post('/', authenticateToken, authorizeRoles('admin'), async (req, res) => {
   const transaction = await sequelize.transaction();
 
   try {
@@ -272,9 +273,9 @@ router.post('/', async (req, res) => {
 
 /**
  * PUT /api/v1/books/:id
- * Update buku
+ * Update buku (Admin only)
  */
-router.put('/:id', async (req, res) => {
+router.put('/:id', authenticateToken, authorizeRoles('admin'), async (req, res) => {
   const transaction = await sequelize.transaction();
 
   try {
@@ -382,9 +383,9 @@ router.put('/:id', async (req, res) => {
 
 /**
  * DELETE /api/v1/books/:id
- * Hapus buku
+ * Hapus buku (Admin only)
  */
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticateToken, authorizeRoles('admin'), async (req, res) => {
   const transaction = await sequelize.transaction();
 
   try {
