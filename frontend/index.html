@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Daftar Buku - Toko Buku Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i>
+                    <span>BookStore</span>
+                </div>
+                <nav class="nav">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        <span>Beranda</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-list"></i>
+                        <span>Kategori</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Penulis</span>
+                    </a>
+                </nav>
+                <div class="header-actions">
+                    <button class="search-btn" onclick="toggleSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="menu-btn" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Cari judul buku atau nama penulis..."
+                    autocomplete="off"
+                >
+                <button onclick="searchBooks()" class="search-submit">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button onclick="toggleSearch()" class="search-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Temukan Buku Favorit Anda
+                        <span class="hero-highlight">📖</span>
+                    </h1>
+                    <p class="hero-description">
+                        Jelajahi koleksi buku terlengkap dari berbagai kategori dan penulis terbaik
+                    </p>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📚</div>
+                        <div class="stat-number" id="totalBooks">-</div>
+                        <div class="stat-label">Total Buku</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✍️</div>
+                        <div class="stat-number" id="totalAuthors">-</div>
+                        <div class="stat-label">Penulis</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏷️</div>
+                        <div class="stat-number" id="totalCategories">-</div>
+                        <div class="stat-label">Kategori</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filters -->
+            <section class="filters">
+                <div class="filters-header">
+                    <h2 class="filters-title">Filter Buku</h2>
+                    <button class="filter-reset" onclick="resetFilters()">
+                        <i class="fas fa-refresh"></i>
+                        Reset
+                    </button>
+                </div>
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label for="categoryFilter">Kategori:</label>
+                        <select id="categoryFilter" onchange="applyFilters()">
+                            <option value="">Semua Kategori</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sortBy">Urutkan:</label>
+                        <select id="sortBy" onchange="applyFilters()">
+                            <option value="title">Judul (A-Z)</option>
+                            <option value="title_desc">Judul (Z-A)</option>
+                            <option value="published_date">Terbaru</option>
+                            <option value="published_date_asc">Terlama</option>
+                            <option value="price">Harga Terendah</option>
+                            <option value="price_desc">Harga Tertinggi</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="stockFilter">Ketersediaan:</label>
+                        <select id="stockFilter" onchange="applyFilters()">
+                            <option value="all">Semua</option>
+                            <option value="true">Tersedia</option>
+                            <option value="false">Habis</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Books Grid -->
+            <section class="books">
+                <div class="books-header">
+                    <h2 class="books-title">Daftar Buku</h2>
+                    <div class="books-count">
+                        <span id="booksCount">Memuat...</span>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div class="loading" id="loading">
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    <p>Memuat daftar buku...</p>
+                </div>
+
+                <!-- Error State -->
+                <div class="error" id="error" style="display: none;">
+                    <div class="error-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Oops! Terjadi Kesalahan</h3>
+                    <p id="errorMessage">Gagal memuat data buku. Silakan coba lagi.</p>
+                    <button onclick="loadBooks()" class="retry-btn">
+                        <i class="fas fa-refresh"></i>
+                        Coba Lagi
+                    </button>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty" id="empty" style="display: none;">
+                    <div class="empty-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Tidak Ada Buku Ditemukan</h3>
+                    <p>Coba ubah kata kunci pencarian atau filter yang diterapkan.</p>
+                </div>
+
+                <!-- Books Grid -->
+                <div class="books-grid" id="booksGrid">
+                    <!-- Book cards akan diisi oleh JavaScript -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination" style="display: none;">
+                    <button class="pagination-btn" id="prevBtn" onclick="changePage(-1)" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                        Sebelumnya
+                    </button>
+                    <div class="pagination-info">
+                        <span id="pageInfo">Halaman 1 dari 1</span>
+                    </div>
+                    <button class="pagination-btn" id="nextBtn" onclick="changePage(1)" disabled>
+                        Selanjutnya
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="logo">
+                        <i class="fas fa-book-open"></i>
+                        <span>BookStore</span>
+                    </div>
+                    <p>Toko buku online terpercaya dengan koleksi lengkap</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Navigasi</h4>
+                        <ul>
+                            <li><a href="#">Beranda</a></li>
+                            <li><a href="#">Kategori</a></li>
+                            <li><a href="#">Penulis</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Bantuan</h4>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Kontak</a></li>
+                            <li><a href="#">Kebijakan</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BookStore. Dibuat untuk SUB-CPMK-6 - UI/UX Implementation</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Book Detail Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 id="modalTitle">Detail Buku</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content akan diisi oleh JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

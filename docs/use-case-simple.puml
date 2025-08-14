@@ -1,0 +1,45 @@
+@startuml Use Case Diagram Simple - Sistem Manajemen Toko Buku Online
+
+title Use Case Diagram - Sistem Manajemen Toko Buku Online
+subtitle SUB-CPMK-8: Desain Sistem dengan UML
+
+' Actors
+actor "User" as User
+actor "Admin" as Admin
+
+' System boundary
+package "Sistem Manajemen Toko Buku Online" {
+    
+    ' Use Cases sesuai requirements
+    usecase "Login User" as Login
+    usecase "Melihat Daftar Buku" as ViewBooks
+    usecase "Mengubah Data Buku" as EditBook
+    usecase "Menghapus Buku" as DeleteBook
+    
+}
+
+' Relationships
+User --> Login : melakukan
+
+' Admin inherits all User capabilities
+Admin --|> User : extends
+
+' Admin-only use cases
+Admin --> ViewBooks : <<Admin Only>>
+Admin --> EditBook : <<Admin Only>>
+Admin --> DeleteBook : <<Admin Only>>
+
+' Dependencies
+ViewBooks <.. EditBook : <<include>>
+ViewBooks <.. DeleteBook : <<include>>
+
+' Constraints
+note right of ViewBooks : Hanya Admin yang dapat\nmelihat daftar lengkap buku\ndengan semua informasi
+
+note right of EditBook : Admin dapat mengubah:\n• Judul Buku\n• Data Penulis\n• Kategori\n• Harga & Stok\n• Informasi lainnya
+
+note right of DeleteBook : Admin dapat menghapus buku\ndengan konfirmasi untuk\nmenghindari kesalahan
+
+note top of Login : Validasi kredensial dan\npenentuan hak akses\nberdasarkan role user
+
+@enduml

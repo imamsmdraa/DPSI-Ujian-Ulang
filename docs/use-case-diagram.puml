@@ -1,0 +1,66 @@
+@startuml Use Case Diagram - Sistem Manajemen Toko Buku Online
+
+!define RECTANGLE class
+
+title Use Case Diagram - Sistem Manajemen Toko Buku Online
+subtitle SUB-CPMK-8: Desain Sistem dengan UML
+
+' Actors
+actor "User" as User
+actor "Admin" as Admin
+
+' System boundary
+rectangle "Sistem Manajemen Toko Buku Online" {
+    
+    ' Use Cases
+    usecase "Login User" as UC1
+    usecase "Melihat Daftar Buku" as UC2
+    usecase "Mengubah Data Buku" as UC3
+    usecase "Menghapus Buku" as UC4
+    
+    ' Additional supporting use cases for completeness
+    usecase "Logout" as UC5
+    usecase "Validasi Kredensial" as UC6
+}
+
+' Relationships between actors and use cases
+
+' User can login and logout
+User --> UC1 : melakukan
+User --> UC5 : melakukan
+
+' Admin inherits from User (Admin is a type of User)
+Admin --|> User
+
+' Admin-specific use cases
+Admin --> UC2 : melakukan
+Admin --> UC3 : melakukan  
+Admin --> UC4 : melakukan
+
+' Include relationships
+UC1 ..> UC6 : <<include>>
+
+' Notes for clarification
+note right of Admin : Admin memiliki hak akses\npenuh untuk mengelola\ndata buku dalam sistem
+
+note right of UC2 : Hanya admin yang dapat\nmelihat daftar lengkap buku\ndengan informasi detail
+
+note right of UC3 : Mengubah informasi buku:\n- Judul, Penulis, Kategori\n- Harga, Stok, Deskripsi\n- ISBN, Tanggal Publikasi
+
+note right of UC4 : Menghapus buku dari sistem\ndengan konfirmasi untuk\nmenghindari penghapusan\nyang tidak disengaja
+
+note bottom of UC1 : Sistem melakukan validasi\nkredensial dan memberikan\nakses sesuai dengan role\npengguna (User/Admin)
+
+' Styling
+skinparam usecase {
+    BackgroundColor lightblue
+    BorderColor darkblue
+    ArrowColor black
+}
+
+skinparam actor {
+    BackgroundColor lightgreen
+    BorderColor darkgreen
+}
+
+@enduml
